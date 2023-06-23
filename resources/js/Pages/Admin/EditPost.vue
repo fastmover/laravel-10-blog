@@ -4,6 +4,7 @@ import { Head, usePage, Link } from '@inertiajs/vue3';
 
 
 const post = usePage().props.post;
+const postTitle = post.title;
 
 </script>
 
@@ -13,7 +14,7 @@ const post = usePage().props.post;
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ post.title }}
+                {{ postTitle }}
             </h2>
         </template>
 
@@ -21,9 +22,8 @@ const post = usePage().props.post;
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div
                     class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 text-gray-900 dark:text-gray-100 mb-4">
-                    <Link :href="route('post', post.slug)">
-                    {{ post.title }}
-                    </Link>
+                    <TextInput v-model="postTitle" />
+                    {{ postTitle }}
                     <div class="conntent pt-2">
                         {{ post.content }}
                     </div>

@@ -16,9 +16,9 @@ class PostController extends Controller
         return Inertia::render('Admin/Posts', ['posts' => $posts]);
     }
 
-    public function edit(Request $request)
+    public function edit(Request $request, Post $post)
     {
-
+        return Inertia::render('Admin/EditPost', ['post' => $post]);
     }
 
     public function update(Request $request)
