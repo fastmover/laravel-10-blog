@@ -19,7 +19,7 @@ class PostFactory extends Factory
     {
 
         $user = \App\Models\User::first();
-        $title = fake()->sentence();
+        $title = fake()->unique()->sentence();
         $slug = Str::of($title)->slug('-');
 
         return [
