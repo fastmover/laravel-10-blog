@@ -22,8 +22,8 @@ Next create the database and seed it with test data:
 
 `./vendor/bin/sail artisan migrate:fresh --seed`
 
-Now navigate to [http://localhost/]
+Now navigate to [http://localhost/](http://localhost/)
 
-You can log in with the follow credentials:
-Email: test@example.com
-Password: password
+You can log in with the follow credentials:  
+Email: test@example.com  
+Password: password  
