@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -22,9 +24,19 @@ class PostController extends Controller
         return Inertia::render('Admin/EditPost', ['post' => $post, 'users' => User::all()]);
     }
 
-    public function update(Request $request)
+    public function update(UpdatePostRequest $request): RedirectResponse
     {
+        $validated = $request->validated();
 
+        $post = Post::findOrFail($validated['id']);
+
+        $post->update([
+            'title' => $validated['title'],
+            'content' => $validated['content'],
+            'author_id' => $validated['author'],
+        ]);
+
+        return back();
     }
 
     public function delete(Request $request)

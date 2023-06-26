@@ -11,6 +11,8 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['title', 'content', 'author_id'];
+
     protected $with = ['author'];
 
     public function getRouteKeyName()

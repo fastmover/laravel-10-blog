@@ -31,8 +31,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
-    Route::get('/admin/posts', [AdminPostController::class, 'index'])->name('admin.posts');
-    Route::get('/admin/posts/{post:slug}', [AdminPostController::class, 'edit'])->name('admin.posts.edit');
+    Route::prefix('admin')->group(function() {
+        Route::get('posts', [AdminPostController::class, 'index'])->name('admin.posts');
+        Route::put('posts', [AdminPostController::class, 'update'])->name('admin.posts.update');
+        Route::get('posts/{post:id}', [AdminPostController::class, 'edit'])->name('admin.posts.edit');
+    });
     
 });
 

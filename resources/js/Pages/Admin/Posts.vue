@@ -41,11 +41,11 @@ const posts = usePage().props.posts;
                             <div class="table-cell cell">{{ post.published_at }}</div>
                             <div class="table-cell cell">{{ post.author.name }}</div>
                             <div class="table-cell cell">
+                                <Link :href="route('admin.posts.edit', post.id)">
                                 <div class="px-4 py-2 font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm">
-                                    <Link :href="route('admin.posts.edit', post.slug)">
                                     Edit
-                                    </Link>
                                 </div>
+                                </Link>
                             </div>
                         </div>
                     </div>
