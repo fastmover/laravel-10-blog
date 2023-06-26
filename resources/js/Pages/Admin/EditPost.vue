@@ -10,23 +10,43 @@ import 'vue-select/dist/vue-select.css';
 const page = usePage()
 const post = page.props.post;
 const users = page.props.users;
-
+let newUser = true;
 const form = useForm({
-    id: post.id,
-    title: post.title,
-    content: post.content,
-    author: post.author.id,
+    id: null,
+    title: '',
+    content: '',
+    author: null,
 });
 
-const updatePost = () => {
-    form.put(route('admin.posts.update'), {
-        preserveScroll: true,
-        onSuccess: () => router.reload({ only: ['users'] }),
-        onError: () => {
-            console.log('error')
-            console.log(form.errors)
-        },
-    });
+if (post.hasOwnProperty('id')) {
+    newUser = false;
+    form.id = post.id
+    form.title = post.title
+    form.content = post.content
+    form.author = post.author.id
+}
+
+
+const createOrUpdate = () => {
+    if (newUser) {
+        form.post(route('admin.posts.create'), {
+            preserveScroll: true,
+            onSuccess: () => router.reload(),
+            onError: () => {
+                console.log('error')
+                console.log(form.errors)
+            },
+        });
+    } else {
+        form.put(route('admin.posts.update'), {
+            preserveScroll: true,
+            onSuccess: () => router.reload(),
+            onError: () => {
+                console.log('error')
+                console.log(form.errors)
+            },
+        });
+    }
 };
 
 </script>
@@ -42,7 +62,7 @@ const updatePost = () => {
         </template>
 
         <div class="py-12">
-            <form @submit.prevent="updatePost">
+            <form @submit.prevent="createOrUpdate">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div
                         class="bg-white dark:bg-gray-800 overflow-auto shadow-sm sm:rounded-lg p-6 text-gray-900 dark:text-gray-100 mb-4">

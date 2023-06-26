@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::prefix('admin')->group(function() {
         Route::get('posts', [AdminPostController::class, 'index'])->name('admin.posts');
         Route::put('posts', [AdminPostController::class, 'update'])->name('admin.posts.update');
+        Route::get('posts/new', [AdminPostController::class, 'new'])->name('admin.posts.new');
+        Route::post('posts/create', [AdminPostController::class, 'create'])->name('admin.posts.create');
         Route::get('posts/{post:id}', [AdminPostController::class, 'edit'])->name('admin.posts.edit');
     });
     

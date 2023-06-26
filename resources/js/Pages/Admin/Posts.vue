@@ -12,6 +12,13 @@ const posts = usePage().props.posts;
 
     <AuthenticatedLayout>
         <template #header>
+            <div class="float-right">
+                <Link :href="route('admin.posts.new')">
+                <div class="px-4 py-2 font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm">
+                    Create
+                </div>
+                </Link>
+            </div>
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 Posts
             </h2>
