@@ -18,7 +18,7 @@ class PostFactory extends Factory
     public function definition(): array
     {
 
-        $user = \App\Models\User::first();
+        $user = \App\Models\User::inRandomOrder()->first();
         $title = fake()->unique()->sentence();
         $slug = Str::of($title)->slug('-');
 
