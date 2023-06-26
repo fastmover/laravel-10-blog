@@ -8,12 +8,14 @@ First, ensure [Docker Desktop](https://www.docker.com/products/docker-desktop/) 
 
 Navigate to into the directory that this repository was copied to and run the following command to install Sail and all other composer dependencies.
 
-`docker run --rm \
-    -u "$(id -u):$(id -g)" \
-    -v "$(pwd):/var/www/html" \
-    -w /var/www/html \
-    laravelsail/php82-composer:latest \
-    composer install --ignore-platform-reqs`
+`
+    docker run --rm \
+        -u "$(id -u):$(id -g)" \
+        -v "$(pwd):/var/www/html" \
+        -w /var/www/html \
+        laravelsail/php82-composer:latest \
+        composer install --ignore-platform-reqs
+`
 
 Once composer is done installing (assuming there were no errors) you can start the website: 
 `./vendor/bin/sail up`
